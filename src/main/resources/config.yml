@@ -1,0 +1,8 @@
+hide-tab: false
+
+header-footer:
+  enabled: false
+  header:
+    - "Danganronpa"
+  footer:
+    - "play.dreamin.fr"

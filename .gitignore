@@ -1,0 +1,27 @@
+# Intellij
+.classpath
+.project
+.settings
+eclipse
+.idea
+.gradle/
+build/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+bin
+
+# Out
+.idea/*
+out
+out/*
+run/
+
+
+# Sublime text
+.vscode/*
+
+# Custom
+test-server/
+cdc/

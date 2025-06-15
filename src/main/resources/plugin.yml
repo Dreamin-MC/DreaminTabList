@@ -1,0 +1,14 @@
+main: fr.dreamin.dreaminTabList.DreaminTabList
+name: DreaminTabList
+description: "Plugin for manage the tab"
+version: '${version}'
+api-version: 1.21
+load: POSTWORLD
+author: "Dreamin"
+depend: ["packetevents"]
+
+commands:
+  test:
+    description: "test"
+  dreamintablist:
+    description: ""
