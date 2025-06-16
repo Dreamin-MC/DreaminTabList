@@ -5,9 +5,7 @@ import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 public class Codex {
@@ -15,7 +13,7 @@ public class Codex {
   private final DreaminTabList instance;
   private FileConfiguration config;
 
-  private boolean hideTab;
+  private boolean hideTab, hidePlayerJoin;
 
   private boolean headerFooterEnabled;
   private Component headers = Component.empty(), footers = Component.empty();
@@ -34,7 +32,6 @@ public class Codex {
     reloadConfigFile();
 
     initGlobal();
-
   }
 
   public void reloadConfigFile() {
@@ -48,6 +45,7 @@ public class Codex {
 
   private void initGlobal() {
     this.hideTab = this.config.getBoolean("hide-tab", false);
+    this.hidePlayerJoin = this.config.getBoolean("hide-player-join", false);
 
     this.headerFooterEnabled = this.config.getBoolean("header-footer.enabled", false);
 

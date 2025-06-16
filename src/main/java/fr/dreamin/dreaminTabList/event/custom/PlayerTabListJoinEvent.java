@@ -20,13 +20,11 @@ public class PlayerTabListJoinEvent extends DreaminTabListEvent {
    *
    * @param player join the player
    */
-  public PlayerTabListJoinEvent(@NotNull Player player) {
+  public PlayerTabListJoinEvent(@NotNull Player player, PlayerTabList playerTabList) {
     super();
     this.player = player;
-    this.playerTabList = new PlayerTabList(this.player);
-    DreaminTabList.getPlayerTabListManager().addPlayer(playerTabList);
+    this.playerTabList = playerTabList;
 
-    player.sendPlayerListHeader(Component.text(""));
   }
 
 }
