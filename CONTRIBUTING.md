@@ -39,7 +39,7 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be repor
 
 ### Prerequisites
 
-- Java 8 or higher
+- Java 21 or higher
 - Gradle 7.0 or higher
 - Git
 - A Minecraft server (Bukkit/Spigot/Paper) for testing
