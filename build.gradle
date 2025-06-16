@@ -59,11 +59,6 @@ tasks {
     options.encoding = "UTF-8"
     options.release.set(targetJavaVersion)
   }
-
-  javadoc {
-    options.encoding = "UTF-8"
-    (options as StandardJavadocDocletOptions).addStringOption("Xdoclint:none", "-quiet")
-  }
 }
 
 processResources {

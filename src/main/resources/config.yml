@@ -1,6 +1,10 @@
+# Hide tab list for all players by default
 hide-tab: false
+
+# Hide new players when they join
 hide-player-join: false
 
+# Header and footer configuration
 header-footer:
   enabled: false
   header:

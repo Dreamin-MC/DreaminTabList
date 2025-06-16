@@ -66,9 +66,7 @@ public class TabList {
   }
 
   public void sendAdd(TabListProfile profile) {
-    UserProfile userProfile = profile.buildUserProfile(); // Doit contenir UUID, name, skinProperties
-
-    this.playerTabList.getPlayer().sendMessage(userProfile.getName());
+    UserProfile userProfile = profile.buildUserProfile();
 
     WrapperPlayServerPlayerInfoUpdate.PlayerInfo info =
       new WrapperPlayServerPlayerInfoUpdate.PlayerInfo(

@@ -1,27 +1,407 @@
-# Intellij
-.classpath
-.project
-.settings
-eclipse
-.idea
+# DreaminTabList - .gitignore
+# Comprehensive gitignore for Java/Gradle Minecraft plugin development
+
+###################
+# Java & Gradle
+###################
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Virtual machine crash logs
+hs_err_pid*
+replay_pid*
+
+# Gradle
 .gradle/
 build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Gradle Wrapper
+!gradle/wrapper/gradle-wrapper.properties
+
+###################
+# IDEs
+###################
+
+# IntelliJ IDEA
+.idea/
+*.iws
 *.iml
 *.ipr
-*.iws
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*~
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+###################
+# Operating Systems
+###################
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+*.bak
+*.backup
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
 .DS_Store
-bin
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
-# Out
-.idea/*
-out
-out/*
-run/
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
 
+###################
+# Minecraft Development
+###################
 
-# Sublime text
-.vscode/*
-
-# Custom
+# Test server directories
 test-server/
-cdc/
+server/
+run/
+minecraft-server/
+testserver/
+
+# Minecraft server files
+server.properties
+ops.json
+whitelist.json
+banned-players.json
+banned-ips.json
+usercache.json
+usernamecache.json
+eula.txt
+
+# World data
+world/
+world_nether/
+world_the_end/
+*/world/
+*/world_nether/
+*/world_the_end/
+
+# Server logs
+logs/
+crash-reports/
+
+# Plugin data
+plugins/
+!plugins/YourPlugin.jar
+
+# Bukkit/Spigot/Paper specific
+bukkit.yml
+spigot.yml
+paper.yml
+commands.yml
+help.yml
+
+###################
+# Build & Distribution
+###################
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Distribution
+dist/
+release/
+*.zip
+*.tar.gz
+
+# Documentation build
+docs/_build/
+site/
+
+###################
+# Development Tools
+###################
+
+# JProfiler
+*.jprofiler
+
+# YourKit
+*.hprof
+
+# JRebel
+rebel.xml
+
+# SonarLint plugin
+.idea/sonarlint/
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+###################
+# Version Control
+###################
+
+# Git
+*.orig
+*.rej
+
+# SVN
+.svn/
+
+###################
+# Temporary & Cache
+###################
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+*.pid
+*.seed
+*.pid.lock
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# node_modules (if using any Node.js tools)
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+###################
+# Security & Secrets
+###################
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# API keys and secrets
+secrets.yml
+secrets.json
+config/secrets.yml
+src/main/resources/secrets.yml
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# SSH keys
+*.pem
+*.key
+id_rsa
+id_dsa
+
+###################
+# Project Specific
+###################
+
+# Plugin configuration (if contains sensitive data)
+# config.yml
+
+# Custom build scripts output
+scripts/output/
+
+# Documentation generation
+javadoc/
+apidocs/
+
+# Test reports
+test-results/
+test-reports/
+
+# Benchmark results
+benchmarks/
+
+# Local development configuration
+local.properties
+local.yml
+dev.properties
+
+# Backup files
+*.backup
+*.bak
+*~
+
+###################
+# Miscellaneous
+###################
+
+# Thumbnails
+*.thumbnail
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+# be added to the global gitignore or merged into this file.
+
+###################
+# Keep These Files
+###################
+
+# Important: Don't ignore these
+!.gitignore
+!.gitattributes
+!README.md
+!LICENSE
+!CONTRIBUTING.md
+!CHANGELOG.md
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Keep example configurations
+!config/example.yml
+!src/main/resources/config.yml.example
+
+# Keep documentation
+!docs/
+!*.md
+
+# Keep CI/CD configurations
+!.github/
+!.gitlab-ci.yml
+!.travis.yml
+!.circleci/
+!Jenkinsfile
+
