@@ -161,7 +161,7 @@ We welcome several types of contributions:
 
 ### Java Code Style
 
-- **Indentation**: 4 spaces (no tabs)
+- **Indentation**: 2 spaces (no tabs)
 - **Line length**: Maximum 120 characters
 - **Naming conventions**:
   - Classes: `PascalCase`
