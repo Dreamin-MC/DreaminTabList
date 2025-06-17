@@ -1,6 +1,7 @@
 # DreaminTabList API
 
 [![Version](https://img.shields.io/badge/version-0.0.2-blue.svg)](https://github.com/dreamin/dreamintablist)
+[![](https://jitpack.io/v/Dreamin-MC/DreaminTabList.svg)](https://jitpack.io/#Dreamin-MC/DreaminTabList)
 [![Java](https://img.shields.io/badge/java-21-orange.svg)](https://www.oracle.com/java/)
 [![Minecraft](https://img.shields.io/badge/minecraft-1.21.4-green.svg)](https://www.minecraft.net/)
 [![License](https://img.shields.io/badge/license-GPL-lightgrey.svg)](LICENSE)
@@ -54,8 +55,12 @@ A comprehensive and developer-friendly TabList management API for Minecraft serv
 
 #### Gradle
 ```gradle
+repositories {
+    maven {url "https://jitpack.io"}
+}
+
 dependencies {
-    compileOnly 'fr.dreamin:dreamintablist-api:0.0.2'
+    compileOnly 'com.github.Dreamin-MC:DreaminTabList:Tag'
 }
 ```
 
