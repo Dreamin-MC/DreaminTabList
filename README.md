@@ -37,9 +37,10 @@ A comprehensive and developer-friendly TabList management API for Minecraft serv
 ### Installation
 
 1. Download the latest DreaminTabList plugin
-2. Place it in your server's `plugins` folder
-3. Restart your server
-4. Add the API dependency to your project
+2. Download the latest PacketEvents plugin
+3. Place it in your server's `plugins` folder
+4. Restart your server
+5. Add the API dependency to your project
 
 #### Maven
 ```xml
