@@ -20,7 +20,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * them perfect for developers who are just getting started with the API.
  *
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class BasicExamples {
 

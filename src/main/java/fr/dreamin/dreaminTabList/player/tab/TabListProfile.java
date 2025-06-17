@@ -100,10 +100,8 @@ public class TabListProfile {
     return false;
   }
 
-  // à appeler après ajout ou update complet
   public void snapshotState() {
     this.lastName = this.name;
     this.lastSkin = new ArrayList<>(this.skinProperties);
   }
-
 }

@@ -38,8 +38,8 @@ import org.jetbrains.annotations.Nullable;
  * }</pre>
  * 
  * @author DreaminTabList API
- * @version 1.0.0
- * @since 1.0.0
+ * @version 0.0.2
+ * @since 0.0.1
  */
 public interface TabListAPI {
     
@@ -51,7 +51,7 @@ public interface TabListAPI {
      * can represent real players or fake entries.
      * 
      * @return the global profile manager, never null
-     * @since 1.0.0
+     * @since 0.0.1
      */
     @NotNull
     TabProfileManager getProfileManager();
@@ -67,7 +67,7 @@ public interface TabListAPI {
      * @return the player's tab manager, never null
      * @throws PlayerNotFoundException if the player is not found in the system
      * @throws IllegalArgumentException if player is null
-     * @since 1.0.0
+     * @since 0.0.1
      */
     @NotNull
     PlayerTabManager getPlayerManager(@NotNull Player player);
@@ -82,7 +82,7 @@ public interface TabListAPI {
      * <p>Note: This operation is performed asynchronously to avoid
      * blocking the main thread when dealing with many players.
      * 
-     * @since 1.0.0
+     * @since 0.0.1
      * @see #showTabForAll()
      * @see #isTabHiddenForAll()
      */
@@ -98,7 +98,7 @@ public interface TabListAPI {
      * <p>Note: This operation is performed asynchronously to avoid
      * blocking the main thread when dealing with many players.
      * 
-     * @since 1.0.0
+     * @since 0.0.1
      * @see #hideTabForAll()
      * @see #isTabHiddenForAll()
      */
@@ -108,7 +108,7 @@ public interface TabListAPI {
      * Checks if the tab list is currently hidden for all players.
      * 
      * @return true if the tab is hidden for all players, false otherwise
-     * @since 1.0.0
+     * @since 0.0.1
      * @see #hideTabForAll()
      * @see #showTabForAll()
      */
@@ -133,7 +133,7 @@ public interface TabListAPI {
      * 
      * @param header the header component to display, null to remove header
      * @param footer the footer component to display, null to remove footer
-     * @since 1.0.0
+     * @since 0.0.1
      * @see #removeHeaderAndFooterForAll()
      */
     void setHeaderAndFooterForAll(@Nullable Component header, @Nullable Component footer);
@@ -144,7 +144,7 @@ public interface TabListAPI {
      * <p>This is equivalent to calling {@link #setHeaderAndFooterForAll(Component, Component)}
      * with null values for both parameters.
      * 
-     * @since 1.0.0
+     * @since 0.0.1
      * @see #setHeaderAndFooterForAll(Component, Component)
      */
     void removeHeaderAndFooterForAll();
@@ -156,7 +156,7 @@ public interface TabListAPI {
      * with the TabList system.
      * 
      * @return the number of managed players
-     * @since 1.0.0
+     * @since 0.0.1
      */
     int getManagedPlayerCount();
     
@@ -166,7 +166,7 @@ public interface TabListAPI {
      * <p>The version follows semantic versioning (MAJOR.MINOR.PATCH).
      * 
      * @return the version string, never null
-     * @since 1.0.0
+     * @since 0.0.1
      */
     @NotNull
     String getVersion();
@@ -178,7 +178,7 @@ public interface TabListAPI {
      * shut down or if there are critical errors.
      * 
      * @return true if the API is enabled, false otherwise
-     * @since 1.0.0
+     * @since 0.0.1
      */
     boolean isEnabled();
     
@@ -191,8 +191,26 @@ public interface TabListAPI {
      * <p>Note: This operation may cause a brief interruption in
      * tab list functionality as settings are reapplied.
      * 
-     * @since 1.0.0
+     * @since 0.0.1
      */
     void reloadConfiguration();
+
+    /**
+     * Allows you to hide a player when joining
+     *
+     * @param value true if hidden at join, false if visible
+     * @since 0.0.2
+     */
+    void setGlobalHidePlayerJoin(boolean value);
+
+    /**
+     * Allows you to hide the tab from everyone
+     *
+     * @param value true if hidden at join, false if visible
+     * @since 0.0.2
+     */
+    void setGlobalTabHidden(boolean value);
+
+
 }
 

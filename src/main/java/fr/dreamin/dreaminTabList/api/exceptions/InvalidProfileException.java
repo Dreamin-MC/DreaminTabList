@@ -24,7 +24,7 @@ import java.io.Serial;
  * }</pre>
  * 
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class InvalidProfileException extends TabListException {

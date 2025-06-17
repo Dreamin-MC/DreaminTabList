@@ -1,9 +1,9 @@
 # DreaminTabList API
 
-[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/dreamin/dreamintablist)
+[![Version](https://img.shields.io/badge/version-0.0.2-blue.svg)](https://github.com/dreamin/dreamintablist)
 [![Java](https://img.shields.io/badge/java-21-orange.svg)](https://www.oracle.com/java/)
-[![Minecraft](https://img.shields.io/badge/minecraft-1.21+-green.svg)](https://www.minecraft.net/)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](LICENSE)
+[![Minecraft](https://img.shields.io/badge/minecraft-1.21.4-green.svg)](https://www.minecraft.net/)
+[![License](https://img.shields.io/badge/license-GPL-lightgrey.svg)](LICENSE)
 
 A comprehensive and developer-friendly TabList management API for Minecraft servers. DreaminTabList provides advanced customization capabilities for player tab lists with a modern, well-documented API.
 
@@ -54,7 +54,7 @@ A comprehensive and developer-friendly TabList management API for Minecraft serv
 #### Gradle
 ```gradle
 dependencies {
-    compileOnly 'fr.dreamin:dreamintablist-api:0.0.1'
+    compileOnly 'fr.dreamin:dreamintablist-api:0.0.2'
 }
 ```
 
@@ -354,7 +354,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPL License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 

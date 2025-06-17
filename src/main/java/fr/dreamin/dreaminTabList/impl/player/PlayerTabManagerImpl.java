@@ -3,6 +3,7 @@ package fr.dreamin.dreaminTabList.impl.player;
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.protocol.player.User;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerPlayerInfoRemove;
+import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerPlayerInfoUpdate;
 import fr.dreamin.dreaminTabList.api.player.PlayerTabManager;
 import fr.dreamin.dreaminTabList.api.profile.TabProfile;
 import fr.dreamin.dreaminTabList.impl.TabListAPIImpl;
@@ -30,7 +31,7 @@ import java.util.stream.Collectors;
  * complete customization of what each player sees in their tab list.
  *
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class PlayerTabManagerImpl implements PlayerTabManager {
@@ -197,16 +198,13 @@ public class PlayerTabManagerImpl implements PlayerTabManager {
 
     tabHidden = true;
 
-    // Remove all visible profiles from player's view
+    // Set listed to false for all visible profiles
     Collection<TabProfile> visible = getVisibleProfiles();
-    List<UUID> uuids = visible.stream()
+    List<UUID> uuidsToHide = visible.stream()
       .map(TabProfile::getUniqueId)
       .collect(Collectors.toList());
 
-    if (!uuids.isEmpty()) {
-      WrapperPlayServerPlayerInfoRemove packet = new WrapperPlayServerPlayerInfoRemove(uuids);
-      packetUser.sendPacket(packet);
-    }
+    sendHideProfiles(uuidsToHide);
 
     api.getLogger().fine("Hidden tab for player: " + player.getName());
   }
@@ -217,11 +215,13 @@ public class PlayerTabManagerImpl implements PlayerTabManager {
 
     tabHidden = false;
 
-    // Send all visible profiles to player
+    // Set listed to true for all visible profiles
     Collection<TabProfile> visible = getVisibleProfiles();
-    for (TabProfile profile : visible) {
-      sendAddProfile(profile);
-    }
+    List<UUID> uuidsToShow = visible.stream()
+      .map(TabProfile::getUniqueId)
+      .collect(Collectors.toList());
+
+    sendShowProfiles(uuidsToShow);
 
     api.getLogger().fine("Shown tab for player: " + player.getName());
   }
@@ -306,13 +306,12 @@ public class PlayerTabManagerImpl implements PlayerTabManager {
   public void clearPlayerSpecificProfiles() {
     if (playerSpecificProfiles.isEmpty()) return;
 
-    // Remove from player's view
-    List<UUID> uuids = new ArrayList<>(playerSpecificProfiles.keySet());
-    playerSpecificProfiles.clear();
+    // Set listed to false for all player-specific profiles
+    List<UUID> uuidsToHide = new ArrayList<>(playerSpecificProfiles.keySet());
+    playerSpecificProfiles.clear(); // Clear the map after getting UUIDs
 
-    if (!tabHidden && !uuids.isEmpty()) {
-      WrapperPlayServerPlayerInfoRemove packet = new WrapperPlayServerPlayerInfoRemove(uuids);
-      packetUser.sendPacket(packet);
+    if (!tabHidden && !uuidsToHide.isEmpty()) {
+      sendHideProfiles(uuidsToHide);
     }
 
     api.getLogger().fine("Cleared player-specific profiles for: " + player.getName());
@@ -353,7 +352,93 @@ public class PlayerTabManagerImpl implements PlayerTabManager {
    * @param profileId the UUID of the profile to remove
    */
   private void sendRemoveProfile(@NotNull UUID profileId) {
-    WrapperPlayServerPlayerInfoRemove packet = new WrapperPlayServerPlayerInfoRemove(profileId);
+    sendHideProfile(profileId);
+  }
+
+  /**
+   * Hides a single profile using UPDATE_LISTED with false.
+   *
+   * @param profileId the UUID of the profile to hide
+   */
+  private void sendHideProfile(@NotNull UUID profileId) {
+    sendHideProfiles(Collections.singletonList(profileId));
+  }
+
+  /**
+   * Hides multiple profiles using UPDATE_LISTED with false.
+   *
+   * @param profileIds the UUIDs of the profiles to hide
+   */
+  private void sendHideProfiles(@NotNull List<UUID> profileIds) {
+    if (profileIds.isEmpty()) return;
+
+    List<WrapperPlayServerPlayerInfoUpdate.PlayerInfo> playerInfos = new ArrayList<>();
+
+    for (UUID uuid : profileIds) {
+      TabProfile profile = findProfile(uuid);
+      if (profile != null) {
+        WrapperPlayServerPlayerInfoUpdate.PlayerInfo info = new WrapperPlayServerPlayerInfoUpdate.PlayerInfo(
+          ((TabProfileImpl) profile).buildUserProfile(),
+          false,  // listed = false to hide
+          profile.getLatency(),
+          profile.getGameMode(),
+          profile.getDisplayName(),
+          null,
+          profile.getSortOrder(),
+          profile.isShowHat()
+        );
+        playerInfos.add(info);
+      }
+    }
+
+    if (playerInfos.isEmpty()) {
+      return;
+    }
+
+    WrapperPlayServerPlayerInfoUpdate packet = new WrapperPlayServerPlayerInfoUpdate(
+      EnumSet.of(WrapperPlayServerPlayerInfoUpdate.Action.UPDATE_LISTED),
+      playerInfos
+    );
+
+    packetUser.sendPacket(packet);
+  }
+
+  /**
+   * Shows multiple profiles using UPDATE_LISTED with true.
+   *
+   * @param profileIds the UUIDs of the profiles to show
+   */
+  private void sendShowProfiles(@NotNull List<UUID> profileIds) {
+    if (profileIds.isEmpty()) return;
+
+    List<WrapperPlayServerPlayerInfoUpdate.PlayerInfo> playerInfos = new ArrayList<>();
+
+    for (UUID uuid : profileIds) {
+      TabProfile profile = findProfile(uuid);
+      if (profile != null) {
+        WrapperPlayServerPlayerInfoUpdate.PlayerInfo info = new WrapperPlayServerPlayerInfoUpdate.PlayerInfo(
+          ((TabProfileImpl) profile).buildUserProfile(),
+          true,  // listed = true to show
+          profile.getLatency(),
+          profile.getGameMode(),
+          profile.getDisplayName(),
+          null,
+          profile.getSortOrder(),
+          profile.isShowHat()
+        );
+        playerInfos.add(info);
+      }
+    }
+
+    if (playerInfos.isEmpty()) {
+      return;
+    }
+
+    WrapperPlayServerPlayerInfoUpdate packet = new WrapperPlayServerPlayerInfoUpdate(
+      EnumSet.of(WrapperPlayServerPlayerInfoUpdate.Action.UPDATE_LISTED),
+      playerInfos
+    );
+
     packetUser.sendPacket(packet);
   }
 

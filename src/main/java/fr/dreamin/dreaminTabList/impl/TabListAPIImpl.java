@@ -45,12 +45,12 @@ import java.util.logging.Logger;
  * </ul>
  *
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class TabListAPIImpl implements TabListAPI {
 
-  private static final String API_VERSION = "0.0.1";
+  private static final String API_VERSION = "0.0.2";
 
   private final DreaminTabList plugin;
   /**
@@ -67,6 +67,7 @@ public class TabListAPIImpl implements TabListAPI {
   // Global state
   private boolean enabled = true;
   private boolean globalTabHidden = false;
+  private boolean globalHidePlayerJoin;
   private Component globalHeader;
   private Component globalFooter;
 
@@ -83,7 +84,7 @@ public class TabListAPIImpl implements TabListAPI {
     // Initialize global settings from config
     loadGlobalSettings();
 
-    logger.info("TabListAPI v" + API_VERSION + " initialized");
+    this.logger.info("TabListAPI v" + API_VERSION + " initialized");
   }
 
   @Override
@@ -105,31 +106,31 @@ public class TabListAPIImpl implements TabListAPI {
 
   @Override
   public void hideTabForAll() {
-    globalTabHidden = true;
+    this.globalTabHidden = true;
 
     // Update all player managers
     for (PlayerTabManagerImpl manager : playerManagers.values()) {
       manager.hideTab();
     }
 
-    logger.info("Hidden tab for all players");
+    this.logger.info("Hidden tab for all players");
   }
 
   @Override
   public void showTabForAll() {
-    globalTabHidden = false;
+    this.globalTabHidden = false;
 
     // Update all player managers
     for (PlayerTabManagerImpl manager : playerManagers.values()) {
       manager.showTab();
     }
 
-    logger.info("Shown tab for all players");
+    this.logger.info("Shown tab for all players");
   }
 
   @Override
   public boolean isTabHiddenForAll() {
-    return globalTabHidden;
+    return this.globalTabHidden;
   }
 
   @Override
@@ -142,7 +143,7 @@ public class TabListAPIImpl implements TabListAPI {
       manager.setHeaderAndFooter(header, footer);
     }
 
-    logger.info("Set header and footer for all players");
+    this.logger.info("Set header and footer for all players");
   }
 
   @Override
@@ -163,13 +164,13 @@ public class TabListAPIImpl implements TabListAPI {
 
   @Override
   public boolean isEnabled() {
-    return enabled && plugin.isEnabled();
+    return enabled && this.plugin.isEnabled();
   }
 
   @Override
   public void reloadConfiguration() {
     // Reload plugin configuration
-    plugin.reloadConfig();
+    this.plugin.reloadConfig();
 
     // Reload global settings
     loadGlobalSettings();
@@ -177,7 +178,25 @@ public class TabListAPIImpl implements TabListAPI {
     // Apply settings to all players
     applyGlobalSettingsToAllPlayers();
 
-    logger.info("Configuration reloaded");
+    this.logger.info("Configuration reloaded");
+  }
+
+  @Override
+  public void setGlobalHidePlayerJoin(boolean value) {
+    if (DreaminTabList.getCodex() == null) return;
+    this.globalHidePlayerJoin = value;
+    DreaminTabList.getCodex().setHidePlayerJoin(value);
+  }
+
+  @Override
+  public void setGlobalTabHidden(boolean value) {
+    if (DreaminTabList.getCodex() == null) return;
+    this.globalTabHidden = value;
+    DreaminTabList.getCodex().setHideTab(value);
+
+    if (value) hideTabForAll();
+    else showTabForAll();
+
   }
 
   /**
@@ -206,7 +225,7 @@ public class TabListAPIImpl implements TabListAPI {
 
     // Fire join event
     PlayerTabJoinEvent joinEvent = new PlayerTabJoinEvent(player, manager);
-    plugin.callEvent(joinEvent);
+    this.plugin.callEvent(joinEvent);
 
     if (joinEvent.isCancelled()) {
       // Remove the manager if event was cancelled
@@ -215,7 +234,7 @@ public class TabListAPIImpl implements TabListAPI {
       return null;
     }
 
-    logger.info("Registered player: " + player.getName());
+    this.logger.info("Registered player: " + player.getName());
     return manager;
   }
 
@@ -236,9 +255,9 @@ public class TabListAPIImpl implements TabListAPI {
     if (manager != null) {
       // Fire leave event
       PlayerTabLeaveEvent leaveEvent = new PlayerTabLeaveEvent(player);
-      plugin.callEvent(leaveEvent);
+      this.plugin.callEvent(leaveEvent);
 
-      logger.info("Unregistered player: " + player.getName());
+      this.logger.info("Unregistered player: " + player.getName());
     }
   }
 
@@ -449,7 +468,7 @@ public class TabListAPIImpl implements TabListAPI {
    * @return true if global header or footer is set
    */
   public boolean hasGlobalHeaderFooter() {
-    return globalHeader != null || globalFooter != null;
+    return this.globalHeader != null || this.globalFooter != null;
   }
 
   /**
@@ -459,7 +478,7 @@ public class TabListAPIImpl implements TabListAPI {
    */
   @Nullable
   public Component getGlobalHeader() {
-    return globalHeader;
+    return this.globalHeader;
   }
 
   /**
@@ -469,7 +488,7 @@ public class TabListAPIImpl implements TabListAPI {
    */
   @Nullable
   public Component getGlobalFooter() {
-    return globalFooter;
+    return this.globalFooter;
   }
 
   /**
@@ -478,7 +497,7 @@ public class TabListAPIImpl implements TabListAPI {
    * @return true if tab is hidden globally
    */
   public boolean isTabHiddenGlobally() {
-    return globalTabHidden;
+    return this.globalTabHidden;
   }
 
   /**
@@ -486,7 +505,7 @@ public class TabListAPIImpl implements TabListAPI {
    */
   public void initialize() {
     TabListAPIFactory.initialize(this);
-    logger.info("TabListAPI registered with factory");
+    this.logger.info("TabListAPI registered with factory");
   }
 
   /**
@@ -501,7 +520,7 @@ public class TabListAPIImpl implements TabListAPI {
     // Shutdown factory
     TabListAPIFactory.shutdown();
 
-    logger.info("TabListAPI shut down");
+    this.logger.info("TabListAPI shut down");
   }
 
   /**
@@ -509,14 +528,15 @@ public class TabListAPIImpl implements TabListAPI {
    */
   private void loadGlobalSettings() {
     if (DreaminTabList.getCodex() != null) {
-      globalTabHidden = DreaminTabList.getCodex().isHideTab();
+      this.globalTabHidden = DreaminTabList.getCodex().isHideTab();
+      this.globalHidePlayerJoin = DreaminTabList.getCodex().isHidePlayerJoin();
 
       if (DreaminTabList.getCodex().isHeaderFooterEnabled()) {
-        globalHeader = DreaminTabList.getCodex().getHeaders();
-        globalFooter = DreaminTabList.getCodex().getFooters();
+        this.globalHeader = DreaminTabList.getCodex().getHeaders();
+        this.globalFooter = DreaminTabList.getCodex().getFooters();
       } else {
-        globalHeader = null;
-        globalFooter = null;
+        this.globalHeader = null;
+        this.globalFooter = null;
       }
     }
   }
@@ -527,11 +547,11 @@ public class TabListAPIImpl implements TabListAPI {
   private void applyGlobalSettingsToAllPlayers() {
     for (PlayerTabManagerImpl manager : playerManagers.values()) {
       // Apply tab visibility
-      manager.setTabHiddenInternal(globalTabHidden);
+      manager.setTabHiddenInternal(this.globalTabHidden);
 
       // Apply header/footer
       if (hasGlobalHeaderFooter()) {
-        manager.setHeaderAndFooter(globalHeader, globalFooter);
+        manager.setHeaderAndFooter(this.globalHeader, this.globalFooter);
       } else {
         manager.removeHeaderAndFooter();
       }

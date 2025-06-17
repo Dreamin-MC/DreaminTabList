@@ -46,7 +46,7 @@ import java.util.function.Predicate;
  * }</pre>
  * 
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public interface TabProfileManager {

@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * leverage the full power of the API for sophisticated tab list management.
  *
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class AdvancedExamples implements Listener {
 

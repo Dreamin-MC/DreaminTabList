@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  * from various sources including online players and the Mojang API.
  *
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class TabProfileBuilderImpl implements TabProfileBuilder {

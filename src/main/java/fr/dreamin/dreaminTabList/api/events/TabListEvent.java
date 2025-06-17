@@ -35,7 +35,7 @@ import org.jetbrains.annotations.NotNull;
  * </ul>
  *
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public abstract class TabListEvent extends Event {

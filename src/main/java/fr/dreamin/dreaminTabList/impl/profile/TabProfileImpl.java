@@ -29,9 +29,9 @@ import java.util.UUID;
  * and are immutable once created. To modify a profile, use the {@link #toBuilder()}
  * method to create a new builder with the current values.
  *
- * @author DreaminTabList API
- * @version 1.0.0
- * @since 1.0.0
+ * @author Dreamin
+ * @version 0.0.2
+ * @since 0.0.1
  */
 public class TabProfileImpl implements TabProfile {
 

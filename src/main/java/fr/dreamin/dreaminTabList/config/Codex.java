@@ -2,6 +2,7 @@ package fr.dreamin.dreaminTabList.config;
 
 import fr.dreamin.dreaminTabList.DreaminTabList;
 import lombok.Getter;
+import lombok.Setter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -41,10 +42,10 @@ import java.util.List;
  * }</pre>
  *
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
-@Getter
+@Getter @Setter
 public class Codex {
 
   /**

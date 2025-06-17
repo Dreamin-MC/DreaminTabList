@@ -7,6 +7,7 @@ import fr.dreamin.dreaminTabList.event.custom.PlayerTabListLeaveEvent;
 import fr.dreamin.dreaminTabList.impl.TabListAPIImpl;
 import fr.dreamin.dreaminTabList.impl.player.PlayerTabManagerImpl;
 import fr.dreamin.dreaminTabList.player.core.PlayerTabList;
+import fr.dreamin.dreaminTabList.player.tab.TabListProfile;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -36,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
  * that might depend on the TabList system being initialized.
  *
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class PlayerEvent implements Listener {
@@ -156,14 +157,22 @@ public class PlayerEvent implements Listener {
    */
   private void hidePlayerFromOthers(@NotNull Player newPlayer) {
     try {
-      // Create packet to remove the new player from tab lists
-      WrapperPlayServerPlayerInfoRemove packet = new WrapperPlayServerPlayerInfoRemove(newPlayer.getUniqueId());
-
       // Send packet to all other players
       DreaminTabList.getPlayerTabListManager().getPlayerTabListSet().forEach(playerTab -> {
         try {
           // Don't send to the new player themselves
-          if (!playerTab.getPlayer().equals(newPlayer)) playerTab.getTabList().getPacketUser().sendPacket(packet);
+          if (!playerTab.getPlayer().equals(newPlayer)) {
+            // Get the TabListProfile of newPlayer as seen by playerTab.getPlayer()
+            TabListProfile profileToHide = playerTab.getTabList().getEffectiveEntries().stream()
+              .filter(profile -> profile.getUuid().equals(newPlayer.getUniqueId()))
+              .findFirst()
+              .orElse(null);
+
+            if (profileToHide != null) {
+              profileToHide.setListed(false);
+              playerTab.getTabList().updatePlayer(profileToHide);
+            }
+          }
         } catch (Exception e) {
           // Log individual packet send errors but continue with others
           DreaminTabList.getInstance().getLogger().warning("Failed to hide player " + newPlayer.getName() + " from " + playerTab.getPlayer().getName() + ": " + e.getMessage());

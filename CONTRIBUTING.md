@@ -271,7 +271,7 @@ All public APIs must have comprehensive Javadoc:
  * @param parameter description of the parameter
  * @return description of the return value
  * @throws ExceptionType when this exception is thrown
- * @since 1.0.0
+ * @since 0.0.1
  * @see RelatedClass#relatedMethod()
  */
 ```

@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * tracking to optimize packet sending.
  *
  * @author Dreamin
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class TabProfileManagerImpl implements TabProfileManager {
