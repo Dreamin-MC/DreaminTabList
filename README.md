@@ -344,7 +344,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 ### Development Setup
 1. Clone the repository
 2. Import into your IDE
-3. Run `./gradlew build` to build the project
+3. Run `./gradlew shadowJar` to build the project
 4. Run tests with `./gradlew test`
 
 ### Code Style
