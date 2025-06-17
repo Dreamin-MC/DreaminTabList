@@ -45,12 +45,19 @@ A comprehensive and developer-friendly TabList management API for Minecraft serv
 
 #### Maven
 ```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
 <dependency>
-    <groupId>fr.dreamin</groupId>
-    <artifactId>dreamintablist-api</artifactId>
-    <version>0.0.1</version>
-    <scope>provided</scope>
+    <groupId>com.github.Dreamin-MC</groupId>
+    <artifactId>DreaminTabList</artifactId>
+    <version>Tag</version>
 </dependency>
+
 ```
 
 #### Gradle
