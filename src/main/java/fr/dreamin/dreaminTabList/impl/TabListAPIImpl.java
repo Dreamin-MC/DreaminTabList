@@ -93,8 +93,7 @@ public class TabListAPIImpl implements TabListAPI {
     return profileManager;
   }
 
-  @Override
-  @NotNull
+  @Override @NotNull
   public PlayerTabManager getPlayerManager(@NotNull Player player) {
     if (player == null) throw new IllegalArgumentException("Player cannot be null");
 

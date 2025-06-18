@@ -8,7 +8,5 @@ author: "Dreamin"
 depend: ["packetevents"]
 
 commands:
-  test:
-    description: "test"
   dreamintablist:
     description: ""

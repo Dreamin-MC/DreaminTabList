@@ -4,7 +4,6 @@ import com.github.retrooper.packetevents.PacketEvents;
 import fr.dreamin.api.cmd.SimpleCommand;
 import fr.dreamin.dreaminTabList.api.TabListAPI;
 import fr.dreamin.dreaminTabList.cmd.DreaminTabListCmd;
-import fr.dreamin.dreaminTabList.cmd.TestCmd;
 import fr.dreamin.dreaminTabList.config.Codex;
 import fr.dreamin.dreaminTabList.event.player.PlayerEvent;
 import fr.dreamin.dreaminTabList.impl.TabListAPIImpl;
@@ -280,12 +279,10 @@ public class DreaminTabList extends JavaPlugin {
    * the SimpleCommand system. Commands include:
    * <ul>
    *   <li>/dreamintablist - Main plugin command</li>
-   *   <li>/test - Testing command for development</li>
    * </ul>
    */
   private void loadCommands() {
     try {
-      SimpleCommand.createCommand("test", new TestCmd());
       SimpleCommand.createCommand("dreamintablist", new DreaminTabListCmd());
 
       getLogger().fine("Commands loaded successfully");
