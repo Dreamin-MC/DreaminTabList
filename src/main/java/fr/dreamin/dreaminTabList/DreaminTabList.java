@@ -1,10 +1,12 @@
 package fr.dreamin.dreaminTabList;
 
 import com.github.retrooper.packetevents.PacketEvents;
+import com.github.retrooper.packetevents.event.PacketListenerPriority;
 import fr.dreamin.api.cmd.SimpleCommand;
 import fr.dreamin.dreaminTabList.api.TabListAPI;
 import fr.dreamin.dreaminTabList.cmd.DreaminTabListCmd;
 import fr.dreamin.dreaminTabList.config.Codex;
+import fr.dreamin.dreaminTabList.event.packet.PacketEvent;
 import fr.dreamin.dreaminTabList.event.player.PlayerEvent;
 import fr.dreamin.dreaminTabList.impl.TabListAPIImpl;
 import fr.dreamin.dreaminTabList.player.core.PlayerTabListManager;
@@ -64,7 +66,7 @@ import org.jetbrains.annotations.NotNull;
  * }</pre>
  *
  * @author Dreamin
- * @version 0.0.2
+ * @version 0.0.3
  * @since 0.0.1
  */
 @Getter
@@ -109,6 +111,9 @@ public class DreaminTabList extends JavaPlugin {
     // Initialize PacketEvents
     PacketEvents.setAPI(SpigotPacketEventsBuilder.build(this));
     PacketEvents.getAPI().load();
+
+    //load Packet from PacketEvent
+    PacketEvents.getAPI().getEventManager().registerListener(new PacketEvent(), PacketListenerPriority.HIGH);
 
     getLogger().info("PacketEvents initialized successfully");
   }

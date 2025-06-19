@@ -16,6 +16,7 @@ public class PlayerTabListJoinEvent extends DreaminTabListEvent {
    * Event when player join a server
    *
    * @param player join the player
+   * @param playerTabList the PlayerTabList of the player
    */
   public PlayerTabListJoinEvent(@NotNull Player player, @NotNull PlayerTabList playerTabList) {
     super();

@@ -40,7 +40,7 @@ import java.util.UUID;
  * connection.
  *
  * @author Dreamin
- * @version 0.0.2
+ * @version 0.0.3
  * @since 0.0.1
  */
 public class PlayerTabLeaveEvent extends TabListEvent {

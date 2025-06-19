@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  * will result in an {@link IllegalStateException}.
  *
  * @author Dreamin
- * @version 0.0.2
+ * @version 0.0.3
  * @since 0.0.1
  */
 public final class TabListAPIFactory {

@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  * complete customization of what each player sees in their tab list.
  *
  * @author Dreamin
- * @version 0.0.2
+ * @version 0.0.3
  * @since 0.0.1
  */
 public class PlayerTabManagerImpl implements PlayerTabManager {

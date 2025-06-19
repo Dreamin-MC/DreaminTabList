@@ -30,7 +30,7 @@ import java.util.UUID;
  * method to create a new builder with the current values.
  *
  * @author Dreamin
- * @version 0.0.2
+ * @version 0.0.3
  * @since 0.0.1
  */
 public class TabProfileImpl implements TabProfile {
