@@ -1,6 +1,6 @@
 # DreaminTabList API
 
-[![Version](https://img.shields.io/badge/version-0.0.2-blue.svg)](https://github.com/dreamin/dreamintablist)
+[![Version](https://img.shields.io/badge/version-0.0.3-blue.svg)](https://github.com/dreamin/dreamintablist)
 [![](https://jitpack.io/v/Dreamin-MC/DreaminTabList.svg)](https://jitpack.io/#Dreamin-MC/DreaminTabList)
 [![Java](https://img.shields.io/badge/java-21-orange.svg)](https://www.oracle.com/java/)
 [![Minecraft](https://img.shields.io/badge/minecraft-1.21.4-green.svg)](https://www.minecraft.net/)
